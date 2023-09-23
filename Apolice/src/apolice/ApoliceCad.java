@@ -43,6 +43,7 @@ public class ApoliceCad extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         txtNumero.setBackground(new java.awt.Color(255, 255, 255));
         txtNumero.setForeground(new java.awt.Color(0, 0, 22));
@@ -181,6 +182,7 @@ public class ApoliceCad extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
