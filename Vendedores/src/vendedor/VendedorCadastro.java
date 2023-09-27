@@ -11,7 +11,9 @@ import javax.swing.JOptionPane;
  * @author anagi
  */
 public class VendedorCadastro extends javax.swing.JFrame {
-
+    private Vendedor vend;
+    private double valorVenda;
+    private double desconto;
     /**
      * Creates new form VendedorCadastro
      */
@@ -43,6 +45,7 @@ public class VendedorCadastro extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         btnSair.setBackground(new java.awt.Color(102, 0, 0));
         btnSair.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -93,11 +96,21 @@ public class VendedorCadastro extends javax.swing.JFrame {
         btnConsulta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnConsulta.setForeground(new java.awt.Color(255, 255, 255));
         btnConsulta.setText("Consultar");
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setBackground(new java.awt.Color(51, 0, 102));
         btnSalvar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,10 +163,11 @@ public class VendedorCadastro extends javax.swing.JFrame {
                     .addComponent(lblComissao)
                     .addComponent(lblValor))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDesconto, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,15 +176,51 @@ public class VendedorCadastro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         int optionSelected = JOptionPane.showConfirmDialog(null, "Você realmente quer sair do sistema?", "Cadastro de vendedores", JOptionPane.YES_NO_OPTION);
         
+        //Por padrão, Yes é o elemento 0 do array de opções
         if(optionSelected == 0){
             System.exit(0);
         }
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        vend = new Vendedor();
+        //Atribuindo valor do textfield para variáveis de instância
+        valorVenda = Double.parseDouble(txtValor.getText());
+        desconto = Double.parseDouble(txtDesconto.getText());
+        
+        vend.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        vend.setNome(txtNome.getText());
+        vend.setPercentualComissao(Double.parseDouble(txtComissao.getText()));
+        
+        //Exibindo mensagem de sucesso
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+        
+        //Limpando os textfields
+        txtCodigo.setText("");
+        txtNome.setText("");
+        txtComissao.setText("");
+        txtValor.setText("");
+        txtDesconto.setText("");
+        
+        //Retorne o foco para o primeiro textfield
+        txtCodigo.requestFocus();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        //Chamando consula, imprimir utilizando as variáveis instânciadas em Salvar
+        if(vend != null){
+            JOptionPane.showMessageDialog(this, vend.imprimir(valorVenda, desconto));
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Nada foi informado", "Erro de preenchimento", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConsultaActionPerformed
 
     /**
      * @param args the command line arguments

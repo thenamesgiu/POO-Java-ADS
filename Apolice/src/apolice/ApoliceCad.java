@@ -198,10 +198,17 @@ public class ApoliceCad extends javax.swing.JFrame {
         apolice.setIdade(Integer.parseInt(txtIdade.getText()));
         apolice.setSexo(sexoCad);
         
+        //Exibindo mensagem de sucesso
+        JOptionPane.showMessageDialog(this, "Salvo com sucesso!", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+        
+        //Limpando os textfields
         txtNumero.setText("");
         txtNome.setText("");
         txtIdade.setText("");
         txtValor.setText("");
+        
+        //Retorne o foco para o primeiro textfield
+        txtNumero.requestFocus();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
@@ -217,6 +224,7 @@ public class ApoliceCad extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         int optionSelected = JOptionPane.showConfirmDialog(null, "Você realmente quer sair do sistema?", "Criação de Apolice", JOptionPane.YES_NO_OPTION);
         
+        //Por padrão, Yes é o elemento 0 do array de opções
         if(optionSelected == 0){
             System.exit(0);
         }
