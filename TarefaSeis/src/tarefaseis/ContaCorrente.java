@@ -10,8 +10,9 @@ public class ContaCorrente {
     public ContaCorrente(double valor) {
         this.valor = valor;
     }
+
     
-    //Valor monetário
+    //Valor monetário - static
     public double getValor() {
         return valor;
     }

@@ -21,7 +21,7 @@ public class TarefaSeis {
                     cc.setValor(Double.parseDouble(valor));
                     
                     valorT = JOptionPane.showInputDialog("Qual é a taxa do seu banco para a conta corrente?");
-                    cc.setVALORTAXA(Double.parseDouble(valorT));
+                    ContaCorrente.setVALORTAXA(Double.parseDouble(valorT));
                     
                     JOptionPane.showMessageDialog(null, "Valor inserido: " + valor + "\nTaxa: " + valorT + "\nValor total: " + cc.imprimir() );
                 case 2:                    
@@ -29,7 +29,7 @@ public class TarefaSeis {
                     cp.setValor(Double.parseDouble(valor));
                     
                     valorT = JOptionPane.showInputDialog("Qual é a taxa do seu banco para a conta corrente?");
-                    cp.setVALORTAXA(Double.parseDouble(valorT));
+                    ContaPoupanca.setVALORTAXA(Double.parseDouble(valorT));
                     
                     JOptionPane.showMessageDialog(null, "Valor inserido: " + valor + "\nTaxa: " + valorT + "\nValor total: " + cp.imprimir() );
                 case 3:                    

@@ -6,12 +6,12 @@ public class ContaPoupanca {
 
     public ContaPoupanca() {
     }
-    
+
     public ContaPoupanca(double valor) {
         this.valor = valor;
     }
-
-    //Valor monetário
+    
+    //Valor monetário - static
     public double getValor() {
         return valor;
     }
